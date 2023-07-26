@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function guardrail(mathFunction) {
   // When the mathFunction function is executed,
   // the value returned by the function should be appended to the queue.
