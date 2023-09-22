@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/TSOlami/alx-backend-javascript/tree/main#readme",
   "dependencies": {
+    "chai": "^4.3.8",
     "mocha": "^10.2.0"
   }
 }
