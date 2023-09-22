@@ -1,32 +1,33 @@
+/* eslint-disable jest/no-hooks */
 /* eslint-disable jest/expect-expect */
 /* eslint-disable jest/prefer-expect-assertions */
 const sinon = require('sinon');
-const assert = require('assert');
-const sendPaymentRequestToApi = require('./4-payment');
+const sendPaymentRequestToApi = require('./4-payment'); // Update the file path if necessary
 const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', () => {
+  let calculateNumberStub;
+  let consoleSpy;
+
+  beforeEach(() => {
+    calculateNumberStub = sinon.stub(Utils, 'calculateNumber').returns(10); // Stub the function to return 10
+    consoleSpy = sinon.spy(console, 'log');
+  });
+
+  afterEach(() => {
+    calculateNumberStub.restore(); // Restore the stub after each test
+    consoleSpy.restore(); // Restore the spy after each test
+  });
+
   it('should call Utils.calculateNumber with type "SUM", a = 100, and b = 20', () => {
-    // Create a stub for Utils.calculateNumber
-    const stub = sinon.stub(Utils, 'calculateNumber');
-
-    // Configure the stub to return a specific value (e.g., 10)
-    stub.withArgs('SUM', 100, 20).returns(10);
-
-    // Create a spy for console.log
-    const consoleSpy = sinon.spy(console, 'log');
-
-    // Call the function we want to test
     sendPaymentRequestToApi(100, 20);
 
-    // Verify that the stub was called with the expected arguments
-    assert(stub.calledOnceWithExactly('SUM', 100, 20));
+    sinon.assert.calledOnceWithExactly(calculateNumberStub, 'SUM', 100, 20);
+  });
 
-    // Verify that console.log was called with the correct message
-    assert(consoleSpy.calledOnceWithExactly('The total is: 10'));
+  it('should log the correct message "The total is: 10"', () => {
+    sendPaymentRequestToApi(100, 20);
 
-    // Restore both the stub and the console.log spy
-    stub.restore();
-    consoleSpy.restore();
+    sinon.assert.calledOnceWithExactly(consoleSpy, 'The total is: 10');
   });
 });
