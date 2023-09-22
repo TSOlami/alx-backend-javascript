@@ -1,7 +1,8 @@
+/* eslint-disable jest/valid-expect */
 /* eslint-disable jest/expect-expect */
 /* eslint-disable jest/prefer-expect-assertions */
 const chai = require('chai');
-const calculateNumber = require('./2-calcul_chai.js');
+const calculateNumber = require('./2-calcul_chai');
 
 const { expect } = chai;
 
