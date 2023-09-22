@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TSOlami/alx-backend-javascript/issues"
   },
-  "homepage": "https://github.com/TSOlami/alx-backend-javascript/tree/main#readme"
+  "homepage": "https://github.com/TSOlami/alx-backend-javascript/tree/main#readme",
+  "dependencies": {
+    "mocha": "^10.2.0"
+  }
 }
